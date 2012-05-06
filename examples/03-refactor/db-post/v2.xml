@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <changeSet author="joel" id="v2:1">
+    <comment>Create owner table</comment>
+    <createTable tableName="owner">
+      <column name="firstname" type="VARCHAR(20)">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_owner"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet author="joel" id="v2:2">
+    <comment>Add owners from the pet table into the owner table</comment>
+    <sql>INSERT INTO owner (firstname) SELECT DISTINCT owner FROM pet</sql>
+  </changeSet>  
+
+  <changeSet author="joel" id="v2:3">
+    <comment>Add foreign key constraint from pet to owner</comment>
+    <addForeignKeyConstraint 
+      constraintName="fk_pet_owner"
+      referencedTableName="owner" 
+      baseColumnNames="owner" 
+      baseTableName="pet"
+      referencedColumnNames="firstname" 
+      referencesUniqueColumn="false"/> <!-- required for mysql -->
+  </changeSet>
+
+  <!--
+  <changeSet author="joel" id="v2:1">
+    <comment>Extract the pet owners into a new owner table.</comment>
+    <addLookupTable
+        existingTableName="pet"
+        existingColumnName="owner"
+        newTableName="owner"
+        newColumnName="firstname"
+        newColumnDataType="VARCHAR(20)"
+        constraintName="fk_pet_owner"/>
+  </changeSet>
+  -->
+
+</databaseChangeLog>
