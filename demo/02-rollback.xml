@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog 
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <!--  Many change tags do not need a rollback tag. They can be generated from the update statement. -->  
+
+  <changeSet id="changeRollback2-create" author="nvoxland">
+    <createTable tableName="changeRollback2">
+      <column name="id" type="int" />
+    </createTable>
+  </changeSet>
+
+  <!-- Standard change tags can be used in a <rollback> tag -->
+
+  <changeSet id="changeRollback" author="nvoxland">
+    <createTable tableName="changeRollback1">
+      <column name="id" type="int" />
+    </createTable>
+    <rollback>
+      <dropTable tableName="changeRollback1" />
+    </rollback>
+  </changeSet>
+
+  <!-- Multiple statements can be included in one <rollback> tag. 
+       Multiple rollback tags can be specified in one changeSet. -->
+
+  <changeSet id="multiRollbackTest" author="rs">
+    <createTable tableName="multiRollback1">
+      <column name="id" type="int" />
+    </createTable>
+    <createTable tableName="multiRollback2">
+      <column name="id" type="int" />
+    </createTable>
+    <createTable tableName="multiRollback3">
+      <column name="id" type="int" />
+    </createTable>
+    <rollback>
+      drop table multiRollback1;
+      drop table multiRollback2;
+    </rollback>
+    <rollback>drop table multiRollback3</rollback>
+  </changeSet>
+
+  <!-- A rollback tag can reference the changeSet the originally created a statement. -->
+
+  <changeSet id="changeRollback2-drop" author="nvoxland">
+    <dropTable tableName="changeRollback2" />
+    <rollback changeSetId="changeRollback2-create" changeSetAuthor="nvoxland" />
+  </changeSet>
+
+  <!-- Rollback tags can be empty if no rollback is possible/needed -->
+
+  <changeSet id="noRollback" author="nvoxland">
+    <sql>insert into multiRollback3 (id) values (1)</sql>
+    <rollback />
+  </changeSet>
+
+</databaseChangeLog>
