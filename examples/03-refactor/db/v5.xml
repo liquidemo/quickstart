@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+  <changeSet author="joel" id="v5:1">
+    <comment>Add primary key on pet table.</comment>
+    <addNotNullConstraint tableName="pet" columnName="name" columnDataType="VARCHAR(20)"/> <!-- h2 -->
+    <addPrimaryKey tableName="pet" columnNames="name"/>
+  </changeSet>
+  
+  <changeSet author="joel" id="v5:2">
+    <addForeignKeyConstraint 
+      constraintName="fk_event_pet"
+      baseTableName="event"
+      baseColumnNames="name"
+      referencedTableName="pet"
+      referencedColumnNames="name"
+      referencesUniqueColumn="false"/>
+  </changeSet>
+
+</databaseChangeLog>

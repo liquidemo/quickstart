@@ -11,6 +11,8 @@
     <dropForeignKeyConstraint baseTableName="pet" constraintName="fk_pet_owner"/>
   </changeSet>
 
+  <!-- Using context and precondition to allow change to run in both h2 and mysql. -->
+
   <changeSet author="joel" id="v3:2" context="mysql">
     <preConditions><dbms type="mysql"/></preConditions>
     <comment>Add auto incremented primary key column id</comment>

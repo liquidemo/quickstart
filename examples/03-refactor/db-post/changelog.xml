@@ -6,7 +6,10 @@
     http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-  <include file="db/v1.xml" />
-  <include file="db/v2.xml" />
+  <include file="db/v1.xml" /> <!-- create table -->
+  <include file="db/v2.xml" /> <!-- extract owner, pet tables -->
+  <include file="db/v3.xml" /> <!-- primary key -->
+  <include file="db/v4.xml" /> <!-- create view -->
+  <include file="db/v5.xml" /> <!-- foreign key -->
 
 </databaseChangeLog>

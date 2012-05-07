@@ -28,20 +28,18 @@
       baseColumnNames="owner" 
       baseTableName="pet"
       referencedColumnNames="firstname" 
-      referencesUniqueColumn="false"/> <!-- mysql -->
+      referencesUniqueColumn="false"/> <!-- required for mysql -->
   </changeSet>
 
-  <!--
-  <changeSet author="joel" id="v2:1">
-    <comment>Extract the pet owners into a new owner table.</comment>
+  <changeSet author="joel" id="v2:4">
+    <comment>Extract the pet species into a new species table.</comment>
     <addLookupTable
         existingTableName="pet"
-        existingColumnName="owner"
-        newTableName="owner"
-        newColumnName="firstname"
+        existingColumnName="species"
+        newTableName="species"
+        newColumnName="name"
         newColumnDataType="VARCHAR(20)"
-        constraintName="fk_pet_owner"/>
+        constraintName="fk_pet_species"/>
   </changeSet>
-  -->
 
 </databaseChangeLog>

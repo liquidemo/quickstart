@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dbname=${1:-stage}
+
+h2sql $dbname << EOF
+  SELECT * FROM databasechangelog;
+EOF

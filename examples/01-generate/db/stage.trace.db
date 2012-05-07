@@ -1,0 +1,3 @@
+05-07 00:20:18 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "DATABASECHANGELOG" not found; SQL statement:
+select * from databasechangelog [42102-166]

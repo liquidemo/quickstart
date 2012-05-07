@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
-    <changeSet author="joel" id="v1:1">
-        <createTable tableName="event">
-            <column name="name" type="VARCHAR(20)"/>
-            <column name="date" type="DATE"/>
-            <column name="type" type="VARCHAR(15)"/>
-            <column name="remark" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="joel" id="v1:2">
-        <createTable tableName="pet">
-            <column name="name" type="VARCHAR(20)"/>
-            <column name="owner" type="VARCHAR(20)"/>
-            <column name="species" type="VARCHAR(20)"/>
-            <column name="sex" type="CHAR(1)"/>
-            <column name="birth" type="DATE"/>
-            <column name="death" type="DATE"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="joel" id="v1:3" context="test">
-        <loadData encoding="UTF-8" file="db/csv/event.csv" quotchar="&quot;" separator="," tableName="event">
-            <column name="name" type="STRING"/>
-            <column name="date" type="DATE"/>
-            <column name="type" type="STRING"/>
-            <column name="remark" type="STRING"/>
-        </loadData>
-    </changeSet>
-    <changeSet author="joel" id="v1:4" context="test">
-        <loadData encoding="UTF-8" file="db/csv/pet.csv" quotchar="&quot;" separator="," tableName="pet">
-            <column name="name" type="STRING"/>
-            <column name="owner" type="STRING"/>
-            <column name="species" type="STRING"/>
-            <column name="sex" type="STRING"/>
-            <column name="birth" type="DATE"/>
-            <column name="death" type="DATE"/>
-        </loadData>
-    </changeSet>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+  <changeSet author="joel" id="v1:1">
+    <createTable tableName="event">
+      <column name="name" type="VARCHAR(20)" />
+      <column name="date" type="DATE" />
+      <column name="type" type="VARCHAR(15)" />
+      <column name="remark" type="VARCHAR(255)" />
+    </createTable>
+  </changeSet>
+  <changeSet author="joel" id="v1:2">
+    <createTable tableName="pet">
+      <column name="name" type="VARCHAR(20)" />
+      <column name="owner" type="VARCHAR(20)" />
+      <column name="species" type="VARCHAR(20)" />
+      <column name="sex" type="CHAR(1)" />
+      <column name="birth" type="DATE" />
+      <column name="death" type="DATE" />
+    </createTable>
+  </changeSet>
+  <changeSet author="joel" id="v1:3" context="test">
+    <loadData encoding="UTF-8" file="db/csv/event.csv" quotchar="&quot;" separator="," tableName="event">
+      <column name="name" type="STRING" />
+      <column name="date" type="DATE" />
+      <column name="type" type="STRING" />
+      <column name="remark" type="STRING" />
+    </loadData>
+  </changeSet>
+  <changeSet author="joel" id="v1:4" context="test">
+    <loadData encoding="UTF-8" file="db/csv/pet.csv" quotchar="&quot;" separator="," tableName="pet">
+      <column name="name" type="STRING" />
+      <column name="owner" type="STRING" />
+      <column name="species" type="STRING" />
+      <column name="sex" type="STRING" />
+      <column name="birth" type="DATE" />
+      <column name="death" type="DATE" />
+    </loadData>
+  </changeSet>
 </databaseChangeLog>

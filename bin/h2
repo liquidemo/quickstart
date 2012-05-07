@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url="jdbc:h2:file:db/${1:-test}"
+url="jdbc:h2:file:db/${1:-stage}"
 driver=org.h2.Driver
 user=sa
 password=sa

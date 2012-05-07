@@ -7,5 +7,9 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
   <include file="db/v1.xml" />
+  <include file="db/v2.xml" />
+  <include file="db/v3.xml" />
+  <include file="db/v4.xml" />
+  <include file="db/v5.xml" />
 
 </databaseChangeLog>

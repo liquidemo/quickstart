@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#rm -rf db
-#cp -r db-pre db
+rm -rf db
+cp -r db-pre db
 
 ../00-setup/install.sh
 
