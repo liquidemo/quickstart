@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dbname=${1:-stage}
+
+mysql $dbname << EOF
+  SELECT * FROM DATABASECHANGELOG;
+EOF
