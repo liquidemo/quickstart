@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+  
+  <changeSet author="joel" id="1">
+    <comment>Drop foreign key constraint from pet to owner</comment>
+    <dropForeignKeyConstraint baseTableName="pet" constraintName="fk_pet_owner"/>
+  </changeSet>
+  <!-- Using context and precondition to allow change to run in both h2 and mysql. -->
+  <!-- 
+  <changeSet author="joel" id="v3:2" context="mysql">
+    <preConditions><dbms type="mysql"/></preConditions>
+    <comment>Add auto incremented primary key column id</comment>
+    <dropPrimaryKey tableName="owner"/>
+    <addColumn tableName="owner">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" primaryKeyName="pk_owner"/>
+      </column>
+    </addColumn>
+  </changeSet>
+  -->
+  <changeSet author="joel" id="2">
+    <comment>Add auto incremented primary key column id</comment>
+    <dropPrimaryKey tableName="owner"/>
+    <addColumn tableName="owner">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKeyName="pk_owner"/>
+      </column>
+    </addColumn>
+  </changeSet>
+
+  <changeSet author="joel" id="3">
+    <comment>Add owner_id column to pet table</comment>
+    <addColumn tableName="pet">
+      <column name="owner_id" type="int" 
+              valueComputed="(SELECT id FROM owner WHERE name=owner)"/>
+    </addColumn>
+  </changeSet>
+
+  <changeSet author="joel" id="4">
+    <comment>Drop owner column from pet table</comment>
+    <dropColumn tableName="pet" columnName="owner"/>
+  </changeSet>
+  
+  <changeSet author="joel" id="5">
+    <comment>Add foreign key constraint from pet to owner</comment>
+    <addForeignKeyConstraint 
+      constraintName="fk_pet_owner" 
+      referencedTableName="owner" 
+      baseColumnNames="owner_id" 
+      baseTableName="pet"
+      referencedColumnNames="id"
+      referencesUniqueColumn="false"/>
+  </changeSet>
+  
+</databaseChangeLog>

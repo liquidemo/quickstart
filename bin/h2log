@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dbname=${1:-stage}
+
+h2sql $dbname << EOF
+  SELECT id,author,filename,md5sum FROM databasechangelog;
+EOF
